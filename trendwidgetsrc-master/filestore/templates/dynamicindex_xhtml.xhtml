@@ -1,0 +1,242 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+      <title>TrendWidget for UOB CS</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script src="https://code.highcharts.com/modules/data.js"></script>
+      <script src="https://code.highcharts.com/modules/exporting.js"></script>
+      <!-- jQuery library -->
+        <script type="text/javascript" src="chartsscript.js"></script>
+      <!-- Latest compiled and minified CSS -->
+
+<!--       This is our primary css file, derived from the opensource Overflow template, and appended with all the customizations we needed-->
+      <link rel="stylesheet" href="templates/assets/css/main.css" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!--       This is a secondary css file meant to load after bootstrap, in order to fix precedence issues where some bootstrap should be overruled.-->
+      <link rel="stylesheet" href="templates/assets/css/main2.css" />
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+   </head>
+   <body>
+      <!-- Header -->
+      <section id="header">
+         <header>
+            <img src="templates/assets/css/images/Untitled-1.png" alt="Mountain View" />
+            <p>Google Sheets to Highcharts Integration</p>
+         </header>
+         <div>
+            <a class="button" role="button" data-toggle="collapse" data-target="#demo" >What We Do</a>
+         <div id="demo" class="collapse">
+            <img src="templates/assets/css/images/combinationlogos.png" alt="Trendwidgetcombo" width=40% height=40%/>
+            <div class="container"><p>We use the Google Sheets API to save data, and serve it to the web where it can be displayed with Highcharts. As an example of what can be done with this pipeline, we've created some weather charts and descriptions below. Just with data collected on our phones, and stored on google drive, we can create endless tables, visualizations and injections that allow you to share your data live in creative, interesting ways.</p>
+            </div>
+         </div>
+             </div>
+         <footer>
+            <a href="#banner" class="button style2 scrolly-middle">The Weather...</a>
+         </footer>
+      </section>
+
+      <!-- Banner -->
+      <section id="banner">
+         <header>
+            <h2>The Weather</h2>
+            <p>Bristol</p>
+            <div class="container" style="align:center">
+               <ul class="nav nav-pills">
+                  <li class="active"><a data-toggle="pill" href="#thirtydaytemp">Temperature</a></li>
+                  <li><a data-toggle="pill" href="#thirtydayhumid">Humidity</a></li>
+                  <li><a data-toggle="pill" href="#thirtydaywind">Wind</a></li>
+               </ul>
+<!--                The following div id's refer to our JS/highcharts tables in highcharts.js -- and will call those scripts to render our tables. -->
+               <div class="tab-content">
+                  <div id="thirtydaytemp" class="tab-pane fade in active" style="width: 100%; height: 300px;">
+                  </div>
+                  <div id="thirtydayhumid" class="tab-pane fade" style="width: 100%; height: 300px;">
+                  </div>
+                  <div id="thirtydaywind" class="tab-pane fade" style="width: 100%; height: 300px;">
+                  </div>
+               </div>
+            </div>
+         </header>
+
+<!--         this animated button scrolls to the targetted section, making navigation more intuitive.  -->
+         <footer>
+            <a href="#first" class="button style2 scrolly">Today's Weather</a>
+         </footer>
+
+      </section>
+      <article id="livedata" class="container box style1 left" style="padding-bottom:5%">
+         <div class="inner">
+            <header>
+               <h2>Live Data</h2>
+            </header>
+            <p>We pull data from Google Sheets to our database, where we can bring it alive on the front end with charts and injections. This makes it possible for us to cross-compare data, and create dynamic scripted descriptions that blend copywritten professionalism with accurate live data. </p>
+            <a href="#intdata" class="button style2 scrolly" style ="background: #35b88f ;">See It In Action</a>
+         </div>
+         <a href="#" class="image fit">
+            <img src="templates/assets/css/images/gradientlogo.png" alt="TrendWidget" />
+         </a>
+         <div></div>
+      </article>
+      <section id="footer">
+      </section>
+      <!-- Feature 1 -->
+      <article id="first" class="container box style1 right" style="padding-bottom:5%">
+         <a href="#" class="image fit">
+            <img src="templates/assets/css/images/sun_and_rain.png" alt="Sunshine and Rain" />
+         </a>
+         <div class="inner">
+            <header>
+               <h2>Today's Weather</h2>
+            </header>
+<!--            This is the first example of our Golang injection -- where we can push values from a backend struct into the html, once we've checked they exist.  -->
+            {{if .Future}}
+            <p>{{.Future}}</p>
+            {{end}}
+         </div>
+         <div></div>
+      </article>
+      <section id="footer">
+      </section>
+      <section id="banner">
+         <header style="background: none">
+            <h2>Interesting Data</h2>
+            <div id = "intdata" class="containerf">
+
+               <!--First chart-->
+               <div class="col-md-6">
+                  <img id = "floating" src="templates/assets/css/images/moon_and_cloud.png" alt="mooncloud"; style = "height: 200px;"/>
+                  <p >The Weekly Average Humidity is...</p>
+                  <header id = "floatingr" style="margin:-40px 0 0 0;" style="font-size:8vw">
+                     {{if .Week.Avhumid}}{{.Week.Avhumid}}{{end}}
+                  </header>
+               </div>
+
+               <!--Second chart-->
+               <div class="col-md-6">
+                  <img id = "floating" src="templates/assets/css/images/templogo.png" alt="TW logo"; style = "height: 200px;"/>
+                  <p>The Weekly Average Temperature is...</p>
+                  <header id = "floatingr" style="margin:-40px 0 0 0;" style="font-size:8vw">
+                     {{if .Week.Avtemp}}{{.Week.Avtemp}}{{end}}
+                  </header>
+               </div>
+
+               <!--Third chart-->
+               <div class="col-md-6">
+                  <img id = "floating" src="templates/assets/css/images/windlogo.png" alt="Windy"; style = "height: 200px;"/>
+                  <p>The Weekly Average Windspeed Is...
+                  <header id = "floatingr" style="margin:-40px 0 0 0;" style="font-size:8vw">
+                     {{if .Week.Avwind}}{{.Week.Avwind}}{{end}}
+                  </header>
+               </div>
+            </div>
+
+                <!--for container div-->
+<!--             Nav pills were formatted after loading bootstrap to allow further customization -- white background colors as well as fading-->
+            <div class="container" style="align:center">
+               <ul class="nav nav-pills">
+                  <li class="active"><a data-toggle="pill" href="#fivedaytemp">Temperature</a></li>
+                  <li><a data-toggle="pill" href="#fivedayhumid">Humidity</a></li>
+                  <li><a data-toggle="pill" href="#fivedaywind">Wind</a></li>
+               </ul>
+               <div class="tab-content">
+                  <div id="fivedaytemp" class="tab-pane fade in active" style="width: 100%; height: 300px;">
+                  </div>
+                  <div id="fivedayhumid" class="tab-pane fade" style="width: 100%; height: 300px;">
+                  </div>
+                  <div id="fivedaywind" class="tab-pane fade" style="width: 100%; height: 300px;">
+                  </div>
+               </div>
+            </div>
+         </header>
+         <footer>
+            <a href="#wsummary" class="button style2 scrolly">Today's Weather</a>
+         </footer>
+      </section>
+      <article id="first" class="container box style1 right" style="padding-bottom:5%">
+         <a href="#" class="image fit">
+            <img src="templates/assets/css/images/moon_and_cloud.png" alt="Mountain View" />
+         </a>
+         <div id = "wsummary" class="inner">
+            <header>
+               <h2>Weather<br />
+                  Summary
+               </h2>
+            </header>
+            <p>
+               {{if .Historic}}
+            <p>{{.Historic}}</p>
+            {{end}}
+         </div>
+         <div></div>
+      </article>
+      <section id="footer">
+      </section>
+      <!-- Contact -->
+      <article class="container box style3">
+         <header>
+            <h2>Sign Up for our Newsletter</h2>
+            <p>We'll send you weather forecasts, historic data, and interesting data visuals!</p>
+         </header>
+
+<!-- this form submission sends a post to our backend, which validates the submission is safe and stores it in our database.
+We also use html% types to validate the submission is an email address. -->
+         <form action="/emailuser" method="POST">
+            <div class="">
+               <div >
+                   <input type="text" name="username" placeholder="Your Name" autofocus autocomplete="off">
+               </div>
+                <div >
+                   <input type="email" name="useremail" placeholder="Your Email" autofocus autocomplete="off">
+               </div>
+                <header style = "padding: 3% 0 0 0;">
+                <p>How Would You Like to Hear From Us?</p>
+                </header>
+               <div style = "padding:  0 0 3% 0;" class="">
+                    <select name="frequency">
+                        <option value="dailyweather">Daily Weather</option>
+                        <option value="weeklyforecast">A Weekly Forecast</option>
+                        <option value="monthlyupdates">Monthly Updates</option>
+                        <option value="interestingcharts">Interesting Charts</option>
+                    </select>
+
+               </div>
+               <div class="12u$">
+                  <ul class="actions">
+                     <li>
+                         <input type="submit" name="submit-btn" value="Submit">
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </form>
+
+
+      </article>
+      <section id="footer">
+<!--        Using googles built in icon system to link to our github  -->
+         <ul class="icons">
+            <li><a href="https://github.com/thomasbale/trendwidgetsrc" class="icon fa-github"><span class="label">Github</span></a></li>
+         </ul>
+      </section>
+      <!-- Scripts -->
+      <script src="templates/assets/js/jquery.min.js"></script>
+      <script src="templates/assets/js/jquery.scrolly.min.js"></script>
+      <script src="templates/assets/js/jquery.poptrox.min.js"></script>
+      <script src="templates/assets/js/skel.min.js"></script>
+      <script src="templates/assets/js/util.js"></script>
+      <script src="templates/assets/js/main.js"></script>
+
+<!--  This defaults all of our highchart color settings to white, in case any scripts dont load properly-->
+      <script>
+         Highcharts.setOptions({
+             colors: ['white', 'white', 'white', 'white', 'white', 'white', 'white', 'white', 'white']
+         });
+      </script>
+   </body>
+</html>

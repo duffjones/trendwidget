@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,400,600");
+@import url("font-awesome.min.css");
+
+/* TABS */
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+    
+  background-color: white !important;
+  color: white;
+}
+
+
+
+#floating {
+/*    float: left;*/
+
+/*    margin: 0 10px 10px 0;*/
+}
+
+
+#floatingr {
+    display:inline-block;
+    text-align: left; 
+
+/*    margin: 0 10px 10px 0;*/
+}
+
+
+.nav-pills>li.active>a{
+ color: black !important;
+ background-color: white !important;
+}
+
+#nav-pills>li.active>a{
+ color: black !important;
+ background-color: white !important;
+}
+
+.nav-pills li a.Active {
+      background-color: white;
+      color: white;
+}
+
